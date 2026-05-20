@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Litzor Diseño</title>
+
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --surface: #ffffff;
+      --text: #111111;
+      --muted: #6f6f76;
+      --line: rgba(17,17,17,.1);
+      --lavender: #8b7cff;
+      --blue: #5b7fff;
+      --gradient: linear-gradient(135deg,#8b7cff,#5b7fff);
+      --radius: 28px;
+      --shadow: 0 24px 70px rgba(25,25,35,.08);
+      --max: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--max));
+      margin: auto;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100% - 32px, var(--max));
+      z-index: 100;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(247,247,245,.82);
+      backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 18px 50px rgba(0,0,0,.05);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(139,124,255,.45);
+      display: grid;
+      place-items: center;
+      color: var(--lavender);
+      background: white;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: .08em;
+      margin-top: -5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--lavender);
+    }
+
+    .btn-primary,
+    .nav-cta {
+      border: none;
+      border-radius: 999px;
+      background: var(--gradient);
+      color: white;
+      padding: 12px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 14px 28px rgba(91,127,255,.25);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: white;
+      font-size: 20px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 0 80px;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--lavender);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.05;
+      letter-spacing: -.06em;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 96px);
+      margin-bottom: 26px;
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: clamp(18px,2vw,22px);
+      margin-bottom: 34px;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 12px 20px;
+      background: white;
+      font-weight: 700;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .orb-card {
+      min-height: 520px;
+      border: 1px solid var(--line);
+      border-radius: 40px;
+      background: linear-gradient(145deg, white, #ededed);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .orb-card::before {
+      content: "";
+      position: absolute;
+      inset: 28px;
+      border: 1px solid rgba(139,124,255,.24);
+      border-radius: 50%;
+    }
+
+    .branch {
+      width: 210px;
+      height: 330px;
+      position: relative;
+      transform: rotate(17deg);
+    }
+
+    .branch::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--gradient);
+      border-radius: 999px;
+    }
+
+    .leaf {
+      position: absolute;
+      width: 74px;
+      height: 30px;
+      border: 3px solid rgba(139,124,255,.75);
+      border-radius: 100% 0 100% 0;
+    }
+
+    .leaf:nth-child(1){top:28px;left:14px;transform:rotate(-30deg);}
+    .leaf:nth-child(2){top:70px;right:-4px;transform:rotate(30deg) scaleX(-1);}
+    .leaf:nth-child(3){top:122px;left:8px;transform:rotate(-25deg);}
+    .leaf:nth-child(4){top:170px;right:2px;transform:rotate(25deg) scaleX(-1);}
+    .leaf:nth-child(5){top:224px;left:20px;transform:rotate(-22deg);}
+    .leaf:nth-child(6){top:270px;right:18px;transform:rotate(26deg) scaleX(-1);}
+
+    section {
+      padding: 105px 0;
+    }
+
+    .philosophy {
+      background: white;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .quote-box {
+      padding: clamp(34px,6vw,70px);
+      border-radius: 42px;
+      background: linear-gradient(135deg,rgba(139,124,255,.1),white);
+      border: 1px solid rgba(139,124,255,.18);
+      box-shadow: var(--shadow);
+    }
+
+    .quote-box h2 {
+      font-size: clamp(42px,6vw,82px);
+      margin-bottom: 24px;
+    }
+
+    .quote-box p,
+    .section-head p,
+    .about-panel p,
+    .service-card p,
+    .statement p,
+    .contact-card p {
+      color: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 28px;
+    }
+
+    .about-panel,
+    .service-card,
+    .contact-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.75);
+      box-shadow: var(--shadow);
+    }
+
+    .about-panel {
+      padding: 36px;
+    }
+
+    .about-panel h3 {
+      font-size: 34px;
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .tag {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(139,124,255,.08);
+      color: #4c4c58;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .visual-panel {
+      min-height: 420px;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 80% 15%,rgba(139,124,255,.28),transparent 32%),
+        linear-gradient(145deg,#fff,#eee);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-panel::after {
+      content: "LITZOR";
+      position: absolute;
+      right: 28px;
+      bottom: 20px;
+      font-size: clamp(64px,12vw,150px);
+      font-weight: 900;
+      color: rgba(17,17,17,.045);
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 46px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(38px,5vw,64px);
+      margin-bottom: 18px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 28px;
+      min-height: 230px;
+      transition: .25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(139,124,255,.34);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      color: var(--lavender);
+      background: rgba(139,124,255,.1);
+      margin-bottom: 28px;
+      font-size: 22px;
+    }
+
+    .service-card h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .statement {
+      text-align: center;
+      padding: 140px 0;
+      background: radial-gradient(circle,rgba(139,124,255,.2),transparent 42%);
+    }
+
+    .statement h2 {
+      font-size: clamp(42px,7vw,92px);
+      margin-bottom: 20px;
+    }
+
+    .contact-card {
+      padding: clamp(34px,6vw,70px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .contact-card h2 {
+      font-size: clamp(38px,5vw,68px);
+      margin-bottom: 16px;
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width:880px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 76px;
+        left: 16px;
+        right: 16px;
+        padding: 26px;
+        border-radius: 28px;
+        background: white;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-grid,
+      .about-grid,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .orb-card {
+        min-height: 390px;
+      }
+    }
+
+    @media(max-width:560px) {
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 76px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <a href="#inicio" class="brand">
+    <div class="brand-mark">✦</div>
+    <div>
+      <span>LITZOR</span>
+      <small>DISEÑO</small>
+    </div>
+  </a>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="#inicio">Inicio</a>
+    <a href="#filosofia">Filosofía</a>
+    <a href="#sobre">Sobre Litzor</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <a class="nav-cta" href="#contacto">Cotizar proyecto</a>
+  <button class="menu-btn" id="menuBtn">☰</button>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow">Litzor Diseño</div>
+      <h1>Diseño contemporáneo para marcas con <span class="gradient-text">intención.</span></h1>
+      <p>Creamos identidades visuales minimalistas, estratégicas y emocionales que transforman ideas en experiencias memorables.</p>
+      <div class="hero-actions">
+        <a href="#servicios" class="btn-primary">Explorar proyectos</a>
+        <a href="#filosofia" class="btn-secondary">Conocer filosofía</a>
+      </div>
+    </div>
+
+    <div class="orb-card reveal">
+      <div class="branch">
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy" id="filosofia">
+  <div class="container">
+    <div class="quote-box reveal">
+      <div class="eyebrow">Filosofía de marca</div>
+      <h2>Diseñar es darle <span class="gradient-text">intención al caos.</span></h2>
+      <p>En Litzor, el diseño es claridad, dirección y percepción. Cada elemento visual existe con propósito: comunicar, conectar y elevar el valor de una marca.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container about-grid">
+    <div class="about-panel reveal">
+      <div class="eyebrow">Sobre Litzor</div>
+      <h3>Diseño minimalista con visión estratégica.</h3>
+      <p>Fusionamos branding contemporáneo, estética editorial, UI moderna y sensibilidad visual premium.</p>
+      <p>Creamos sistemas visuales limpios, sofisticados y funcionales que generan conexión emocional y presencia de marca.</p>
+
+      <div class="tags">
+        <span class="tag">Branding</span>
+        <span class="tag">Editorial</span>
+        <span class="tag">UI / UX</span>
+        <span class="tag">Premium</span>
+        <span class="tag">Minimal</span>
+      </div>
+    </div>
+
+    <div class="visual-panel reveal"></div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Servicios</div>
+      <h2>Soluciones visuales para marcas que buscan destacar.</h2>
+      <p>Diseñamos piezas y sistemas que ordenan la comunicación visual de una marca con estética, propósito y claridad.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card reveal">
+        <div class="service-icon">◇</div>
+        <h3>Branding e identidad visual</h3>
+        <p>Sistemas visuales sólidos, coherentes y memorables para marcas nuevas o en evolución.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">✦</div>
+        <h3>Diseño de logotipos</h3>
+        <p>Signos visuales limpios y estratégicos que comunican personalidad, valor y dirección.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">▣</div>
+        <h3>Packaging y mockups</h3>
+        <p>Presentaciones visuales premium para elevar la percepción del producto y su experiencia.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">⌁</div>
+        <h3>Diseño UI/UX</h3>
+        <p>Interfaces limpias, funcionales y modernas enfocadas en claridad y experiencia de usuario.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">◌</div>
+        <h3>Dirección visual</h3>
+        <p>Criterios visuales para construir una presencia consistente en todos los puntos de contacto.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">✺</div>
+        <h3>Contenido gráfico</h3>
+        <p>Piezas digitales para redes, presentaciones y comunicación comercial con estética de marca.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="statement">
+  <div class="container reveal">
+    <h2><span class="gradient-text">Minimalismo.</span><br>Percepción. Experiencia.</h2>
+    <p>Diseñamos atmósferas visuales que comunican más con menos.</p>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact-card reveal">
+      <div>
+        <div class="eyebrow">Contacto</div>
+        <h2>Construyamos algo con identidad.</h2>
+        <p>Litzor Diseño · Diseño visual contemporáneo.</p>
+      </div>
+      <a href="mailto:hola@litzor.com" class="btn-primary">Contactar</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <p>© 2026 Litzor Diseño. Todos los derechos reservados.</p>
+    <p>Diseño contemporáneo para marcas con intención.</p>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    menuBtn.textContent = navLinks.classList.contains("open") ? "×" : "☰";
+  });
+
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuBtn.textContent = "☰";
+    });
+  });
+
+  document.addEventListener("click", e => {
+    if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove("open");
+      menuBtn.textContent = "☰";
+    }
+  });
+
+  const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.14 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
