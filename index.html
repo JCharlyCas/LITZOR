@@ -209,40 +209,46 @@
       border: 1px solid rgba(139,124,255,.24);
       border-radius: 50%;
     }
+    
+   .hero-gallery {
+  width: calc(100% - 42px);
+  height: calc(100% - 42px);
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  background: #ededed;
+}
 
-    .branch {
-      width: 210px;
-      height: 330px;
-      position: relative;
-      transform: rotate(17deg);
-    }
+.gallery-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1s ease, transform 1.8s ease;
+}
 
-    .branch::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 5px;
-      height: 100%;
-      background: var(--gradient);
-      border-radius: 999px;
-    }
+.gallery-img.active {
+  opacity: 1;
+  transform: scale(1);
+}
 
-    .leaf {
-      position: absolute;
-      width: 74px;
-      height: 30px;
-      border: 3px solid rgba(139,124,255,.75);
-      border-radius: 100% 0 100% 0;
-    }
-
-    .leaf:nth-child(1){top:28px;left:14px;transform:rotate(-30deg);}
-    .leaf:nth-child(2){top:70px;right:-4px;transform:rotate(30deg) scaleX(-1);}
-    .leaf:nth-child(3){top:122px;left:8px;transform:rotate(-25deg);}
-    .leaf:nth-child(4){top:170px;right:2px;transform:rotate(25deg) scaleX(-1);}
-    .leaf:nth-child(5){top:224px;left:20px;transform:rotate(-22deg);}
-    .leaf:nth-child(6){top:270px;right:18px;transform:rotate(26deg) scaleX(-1);}
-
+.hero-gallery::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(247,247,245,.14),
+      rgba(139,124,255,.18)
+    );
+  pointer-events: none;
+}
+       
     section {
       padding: 105px 0;
     }
@@ -525,14 +531,15 @@
         <a href="#filosofia" class="btn-secondary">Conocer filosofía</a>
       </div>
     </div>
-
+    
     <div class="orb-card reveal">
-      <div class="brand-mark">
-        <img src="assets/isologo-litzor.png"
-         class="nav-isologo">
-      </div>
-    </div>
-  </div>
+      <div class="hero-gallery">
+       <img class="gallery-img active" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Estudio creativo">
+       <img class="gallery-img" src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80" alt="Diseño editorial">
+       <img class="gallery-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Diseño digital">
+       <img class="gallery-img" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Branding visual">
+     </div>
+    </div>   
 </section>
 
 <section class="philosophy" id="filosofia">
@@ -677,6 +684,18 @@
   }, { threshold: 0.14 });
 
   reveals.forEach(el => observer.observe(el));
+
+const galleryImages = document.querySelectorAll(".gallery-img");
+let galleryIndex = 0;
+
+setInterval(() => {
+  galleryImages[galleryIndex].classList.remove("active");
+
+  galleryIndex = (galleryIndex + 1) % galleryImages.length;
+
+  galleryImages[galleryIndex].classList.add("active");
+}, 3000);
+  
 </script>
 
 </body>
