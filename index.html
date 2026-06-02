@@ -320,17 +320,15 @@
       font-size: 13px;
       font-weight: 700;
     }
-
+    
     .visual-panel {
-      min-height: 420px;
+      min-height: 300px;
       border-radius: var(--radius);
-      background:
-        radial-gradient(circle at 80% 15%,rgba(139,124,255,.28),transparent 32%),
-        linear-gradient(145deg,#fff,#eee);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
-      position: 150%;
+      position: absolute;
       overflow: hidden;
+      object-fit: cover
     }
 
     .visual-panel::after {
